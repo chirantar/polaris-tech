@@ -40,7 +40,7 @@ public class RiderController {
             @RequestParam Double restaurantLat,
             @RequestParam Double restaurantLng) {
 
-        List<Rider> nearbyRiders = riderService.findNearbyRiders(restaurantLat, restaurantLng, 5.0); // 5 KM radius
+        List<Rider> nearbyRiders = riderService.findNearbyRiders(restaurantLat, restaurantLng, 5.0);
 
         if (nearbyRiders.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

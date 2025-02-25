@@ -7,9 +7,10 @@ A backend system for a food delivery service similar to Zomato/Swiggy, built usi
 ## 📚 Table of Contents
 
 1. [Project Overview](#project-overview)
-2. [API Documentation](#api-documentation)
-3. [Database Structure](#database-structure)
-4. [Scaling Strategy](#scaling-strategy)
+2. [Prerequisites](#prerequisites)
+3. [Running the App with Docker](#Running the App with Docker)
+4. [API Documentation](#api-documentation)
+5. [Database Structure](#database-structure)
 5. [Technologies Used](#technologies-used)
 
 ---
@@ -23,6 +24,44 @@ This backend system supports the following core features:
 - **Order Placement, Acceptance, and Assignment**
 - **Real-Time Order Notifications (WebSocket-based)**
 - **Rider Location Updates and Nearest Rider Assignment**
+
+---
+
+## ⚡ Prerequisites
+
+- [Docker](https://www.docker.com/get-started) installed
+- [Maven](https://maven.apache.org/) installed
+
+## 🐳 Running the App with Docker
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone <repository_url>
+   cd polaris-tech
+   ```
+
+2. **Build the JAR locally (optional):**
+
+   ```bash
+   mvn clean package -DskipTests
+   ```
+
+3. **Run the app using Docker Compose:**
+
+   ```bash
+   docker-compose up --build
+   ```
+
+4. **Access the application:**
+
+    - **API Base URL:** `http://localhost:8080`
+    - **PostgreSQL:**
+        - Host: `localhost`
+        - Port: `5440`
+        - DB: `polaris-db`
+        - User: `polaris-user`
+        - Password: `polaris-pass`
 
 ---
 
@@ -144,27 +183,6 @@ This backend system supports the following core features:
 | itemName   | VARCHAR | Name of the item   |
 | quantity   | INT     | Quantity ordered   |
 | price      | DOUBLE  | Item price         |
-
----
-
-## 📈 Scaling Strategy
-
-1. **WebSocket Scaling:**
-    - Use **Redis Pub/Sub** or **Kafka** for distributing WebSocket messages across multiple instances.
-    - Implement **sticky sessions** if using load balancers.
-
-2. **Database Optimization:**
-    - Index fields like `userId`, `restaurantId`, and `riderId` in the **Order** table.
-    - Use **GeoSpatial indexing** (e.g., PostGIS or Redis GEO) for efficient location-based queries.
-
-3. **Load Balancing:**
-    - Deploy behind a load balancer (NGINX/HAProxy) to manage incoming requests.
-
-4. **Microservices Decomposition (Future):**
-    - Split into microservices: **User Service**, **Order Service**, **Rider Service**, and **Notification Service**.
-
-5. **Caching:**
-    - Use **Redis** for caching frequently accessed data (e.g., restaurant menus, rider locations).
 
 ---
 

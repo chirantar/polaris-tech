@@ -20,16 +20,11 @@ public class OrderService {
         this.restaurantRepository = restaurantRepository;
     }
 
-    // 1️⃣ Place an Order
     public Order placeOrder(Order order) {
-        // Set initial status as PLACED
         order.setOrderStatus(OrderStatus.PLACED);
-
-        // Optionally validate restaurant exists
         restaurantRepository.findById(order.getRestaurantId())
                 .orElseThrow(() -> new EntityNotFoundException("Restaurant not found"));
 
-        // Save the order
         return orderRepository.save(order);
     }
 

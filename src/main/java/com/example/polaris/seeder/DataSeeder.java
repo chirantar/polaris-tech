@@ -6,7 +6,6 @@ import com.example.polaris.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -35,28 +34,28 @@ public class DataSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         if (alreadySeeded || restaurantRepository.count() > 0) {
-            return; // Avoid reseeding if data already exists
+            return;
         }
 
         Restaurant rest1 = new Restaurant();
         rest1.setName("Spice Hub");
         rest1.setAddress("Downtown");
         rest1.setCuisineType("Indian");
-        rest1.setLatitude(28.6139);  // Delhi
+        rest1.setLatitude(28.6139);
         rest1.setLongitude(77.2090);
 
         Restaurant rest2 = new Restaurant();
         rest2.setName("Burger Planet");
         rest2.setAddress("Uptown");
         rest2.setCuisineType("American");
-        rest2.setLatitude(19.0760);  // Mumbai
+        rest2.setLatitude(19.0760);
         rest2.setLongitude(72.8777);
 
         Restaurant rest3 = new Restaurant();
         rest3.setName("Pizza Palace");
         rest3.setAddress("Central");
         rest3.setCuisineType("Italian");
-        rest3.setLatitude(12.9716);  // Bangalore
+        rest3.setLatitude(12.9716);
         rest3.setLongitude(77.5946);
 
         restaurantRepository.saveAll(List.of(rest1, rest2, rest3));
@@ -65,28 +64,28 @@ public class DataSeeder implements CommandLineRunner {
         rider1.setName("Raj Kumar");
         rider1.setPhoneNumber("9876543210");
         rider1.setVehicleNumber("DL4CAF1234");
-        rider1.setLatitude(28.6145); // Near Delhi restaurant
+        rider1.setLatitude(28.6145);
         rider1.setLongitude(77.2095);
 
         Rider rider2 = new Rider();
         rider2.setName("Anita Sharma");
         rider2.setPhoneNumber("9876549876");
         rider2.setVehicleNumber("MH12CD3456");
-        rider2.setLatitude(19.0750); // Near Mumbai restaurant
+        rider2.setLatitude(19.0750);
         rider2.setLongitude(72.8770);
 
         Rider rider3 = new Rider();
         rider3.setName("Vikram Singh");
         rider3.setPhoneNumber("9988776655");
         rider3.setVehicleNumber("KA05MK4321");
-        rider3.setLatitude(12.9725); // Near Bangalore restaurant
+        rider3.setLatitude(12.9725);
         rider3.setLongitude(77.5950);
 
         Rider rider4 = new Rider();
         rider4.setName("Priya Patel");
         rider4.setPhoneNumber("9876554321");
         rider4.setVehicleNumber("GJ01AB1234");
-        rider4.setLatitude(22.3072); // Ahmedabad
+        rider4.setLatitude(22.3072);
         rider4.setLongitude(72.8376);
 
         riderRepository.saveAll(List.of(rider1, rider2, rider3, rider4));

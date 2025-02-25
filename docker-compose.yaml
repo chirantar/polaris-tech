@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  # PostgreSQL Database
+  postgres-db:
+    image: postgres:14.1-alpine
+    container_name: polaris_pgdb
+    environment:
+      POSTGRES_DB: polaris-db
+      POSTGRES_USER: polaris-db
+      POSTGRES_PASSWORD: polaris-db
+    ports:
+      - "5440:5432"
+    networks:
+      - backend
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Spring Boot Application
+  polaris-app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: polaris-tech
+    depends_on:
+      - postgres-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/polaris-db
+      SPRING_DATASOURCE_USERNAME: polaris-db
+      SPRING_DATASOURCE_PASSWORD: polaris-db
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  postgres_data:
