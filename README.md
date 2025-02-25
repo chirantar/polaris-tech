@@ -154,8 +154,10 @@ This backend system supports the following core features:
 |--------------|---------|---------------------|
 | id           | BIGINT  | Primary Key         |
 | name         | VARCHAR | Restaurant name     |
-| location     | VARCHAR | Physical address    |
+| address      | VARCHAR | Physical address    |
 | cuisineType  | VARCHAR | Cuisine offered     |
+| latitude     | DOUBLE  | Current latitude    |
+| longitude    | DOUBLE  | Current longitude   |
 
 ### 📁 FoodItem Table
 | Field        | Type    | Description        |
