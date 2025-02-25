@@ -9,8 +9,7 @@ A backend system for a food delivery service similar to Zomato/Swiggy, built usi
 1. [Project Overview](#project-overview)
 2. [API Documentation](#api-documentation)
 3. [Database Structure](#database-structure)
-4. [Scaling Strategy](#scaling-strategy)
-5. [Technologies Used](#technologies-used)
+4. [Technologies Used](#technologies-used)
 
 ---
 
@@ -115,8 +114,10 @@ This backend system supports the following core features:
 |--------------|---------|---------------------|
 | id           | BIGINT  | Primary Key         |
 | name         | VARCHAR | Restaurant name     |
-| location     | VARCHAR | Physical address    |
+| address      | VARCHAR | Physical address    |
 | cuisineType  | VARCHAR | Cuisine offered     |
+| latitude     | DOUBLE  | Current latitude    |
+| longitude    | DOUBLE  | Current longitude   |
 
 ### 📁 FoodItem Table
 | Field        | Type    | Description        |
@@ -144,29 +145,6 @@ This backend system supports the following core features:
 | itemName   | VARCHAR | Name of the item   |
 | quantity   | INT     | Quantity ordered   |
 | price      | DOUBLE  | Item price         |
-
----
-
-## 📈 Scaling Strategy
-
-1. **WebSocket Scaling:**
-    - Use **Redis Pub/Sub** or **Kafka** for distributing WebSocket messages across multiple instances.
-    - Implement **sticky sessions** if using load balancers.
-
-2. **Database Optimization:**
-    - Index fields like `userId`, `restaurantId`, and `riderId` in the **Order** table.
-    - Use **GeoSpatial indexing** (e.g., PostGIS or Redis GEO) for efficient location-based queries.
-
-3. **Load Balancing:**
-    - Deploy behind a load balancer (NGINX/HAProxy) to manage incoming requests.
-
-4. **Microservices Decomposition (Future):**
-    - Split into microservices: **User Service**, **Order Service**, **Rider Service**, and **Notification Service**.
-
-5. **Caching:**
-    - Use **Redis** for caching frequently accessed data (e.g., restaurant menus, rider locations).
-
----
 
 ## 🛠️ Technologies Used
 
