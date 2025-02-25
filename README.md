@@ -4,18 +4,19 @@ A backend system for a food delivery service similar to Zomato/Swiggy, built usi
 
 ---
 
+
 ## 📚 Table of Contents
 
 1. [Project Overview](#project-overview)
 2. [Prerequisites](#prerequisites)
-3. [Running the App with Docker](#Running the App with Docker)
+3. [Running the App with Docker](#running-the-app-with-docker)
 4. [API Documentation](#api-documentation)
 5. [Database Structure](#database-structure)
-5. [Technologies Used](#technologies-used)
+6. [Technologies Used](#technologies-used)
 
 ---
 
-## 📝 Project Overview
+## Project Overview
 
 This backend system supports the following core features:
 
@@ -27,12 +28,12 @@ This backend system supports the following core features:
 
 ---
 
-## ⚡ Prerequisites
+## Prerequisites
 
 - [Docker](https://www.docker.com/get-started) installed
 - [Maven](https://maven.apache.org/) installed
 
-## 🐳 Running the App with Docker
+## Running the App with Docker
 
 1. **Clone the repository:**
 
@@ -65,9 +66,9 @@ This backend system supports the following core features:
 
 ---
 
-## 📊 API Documentation
+## API Documentation
 
-### 🧑 User APIs
+### User APIs
 
 - **Register User**  
   `POST /api/users/register`  
@@ -81,7 +82,7 @@ This backend system supports the following core features:
   ```
   **Response:** `201 Created`
 
-### 🏍️ Rider APIs
+### Rider APIs
 
 - **Register Rider**  
   `POST /api/riders/register`
@@ -92,7 +93,7 @@ This backend system supports the following core features:
 - **Find Nearest Rider**  
   `GET /api/riders/nearest?restaurantLat=12.9716&restaurantLng=77.5946`
 
-### 🍽️ Restaurant APIs
+### Restaurant APIs
 
 - **Register Restaurant**  
   `POST /api/restaurants`
@@ -103,7 +104,7 @@ This backend system supports the following core features:
 - **Get Restaurant By ID**  
   `GET /api/restaurants/{id}`
 
-### 🧾 Food Item APIs
+### Food Item APIs
 
 - **Add Food Item to Restaurant**  
   `POST /api/restaurants/{id}/food-items`
@@ -111,7 +112,7 @@ This backend system supports the following core features:
 - **Get Menu for a Restaurant**  
   `GET /api/restaurants/{id}/menu`
 
-### 📦 Order APIs
+### Order APIs
 
 - **Place Order**  
   `POST /api/orders`
@@ -130,9 +131,9 @@ This backend system supports the following core features:
 
 ---
 
-## 🗄️ Database Structure
+## Database Structure
 
-### 📁 User Table
+### User Table
 | Field     | Type    | Description       |
 |-----------|---------|-------------------|
 | id        | BIGINT  | Primary Key       |
@@ -140,7 +141,7 @@ This backend system supports the following core features:
 | password  | VARCHAR | Hashed password   |
 | name      | VARCHAR | Full name         |
 
-### 📁 Rider Table
+### Rider Table
 | Field      | Type    | Description           |
 |------------|---------|-----------------------|
 | id         | BIGINT  | Primary Key           |
@@ -149,7 +150,7 @@ This backend system supports the following core features:
 | latitude   | DOUBLE  | Current latitude      |
 | longitude  | DOUBLE  | Current longitude     |
 
-### 📁 Restaurant Table
+### Restaurant Table
 | Field        | Type    | Description         |
 |--------------|---------|---------------------|
 | id           | BIGINT  | Primary Key         |
@@ -159,7 +160,7 @@ This backend system supports the following core features:
 | latitude     | DOUBLE  | Current latitude    |
 | longitude    | DOUBLE  | Current longitude   |
 
-### 📁 FoodItem Table
+### FoodItem Table
 | Field        | Type    | Description        |
 |--------------|---------|--------------------|
 | id           | BIGINT  | Primary Key        |
@@ -168,7 +169,7 @@ This backend system supports the following core features:
 | isVeg        | BOOLEAN | Vegetarian or not  |
 | restaurantId | BIGINT  | FK to Restaurant   |
 
-### 📁 Order Table
+### Order Table
 | Field        | Type    | Description              |
 |--------------|---------|--------------------------|
 | orderId      | BIGINT  | Primary Key              |
@@ -178,7 +179,7 @@ This backend system supports the following core features:
 | finalPrice   | DOUBLE  | Total order cost         |
 | orderStatus  | VARCHAR | PLACED, ACCEPTED, etc.   |
 
-### 📁 OrderedItem (Embedded)
+### OrderedItem (Embedded)
 | Field      | Type    | Description        |
 |------------|---------|--------------------|
 | foodItemId | BIGINT  | FK to FoodItem     |
@@ -188,7 +189,7 @@ This backend system supports the following core features:
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **Java 17**
 - **Spring Boot** (Web, JPA, WebSocket)
